@@ -21,7 +21,7 @@ public class Inspector {
 		getMethods(aClass);
 		while (superClass != null){
 			String className = superClass.getName();
-			System.out.println("Super Class: " + className);
+			System.out.println("	Super Class: " + className);
 			
 			getInterfaces(superClass);
 			getMethods(superClass);
@@ -33,24 +33,28 @@ public class Inspector {
 
 	public void getDeclaringClass(Object obj){
 		Class aClass = obj.getClass();
-		System.out.println("Class Name: "+ aClass);
+		System.out.println("	Class Name: "+ aClass);
 	}
 	
 	public void getInterfaces(Class aClass){
 		Class[] arrayClass = aClass.getInterfaces();
-		System.out.println("Interfaces: " + Arrays.asList(arrayClass));	
+		System.out.println("	Class Interfaces: " + Arrays.asList(arrayClass));	
 	}
 	
 	public void getMethods(Class aClass){
 		Method[] arrayMethod = aClass.getDeclaredMethods();
 		for(int counter = 0; counter < arrayMethod.length; counter++){
-			System.out.println("Method: " + arrayMethod[counter]);
-			System.out.println("	Return Type: " + arrayMethod[counter].getReturnType());
-			System.out.println("	Modifers: " + arrayMethod[counter].getModifiers());
+			System.out.println("		Method: " + arrayMethod[counter]);
+			System.out.println("			Return Type: " + arrayMethod[counter].getReturnType());
+			System.out.println("			Modifers: " + arrayMethod[counter].getModifiers());
 			Class[] arrayException = arrayMethod[counter].getExceptionTypes();
-			System.out.println("	Exceptions: " + Arrays.asList(arrayException));
+			System.out.println("			Exceptions: " + Arrays.asList(arrayException));
 			Class[] arrayParameter = arrayMethod[counter].getParameterTypes();
-			System.out.println("	Parmeters: " + Arrays.asList(arrayParameter));
+			System.out.println("			Parmeters: " + Arrays.asList(arrayParameter));
 		}
+	}
+	
+	public void getConstructors(){
+		
 	}
 }
