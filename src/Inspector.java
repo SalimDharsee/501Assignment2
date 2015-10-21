@@ -1,6 +1,7 @@
 
 
 import java.lang.reflect.*;
+import java.util.Arrays;
 public class Inspector {
 	
 	
@@ -15,6 +16,7 @@ public class Inspector {
 	private void getSuperClass(Object obj) {
 		Class aClass = obj.getClass();
 		Class superClass = aClass.getSuperclass();
+		getInterfaces(aClass);
 		while (superClass != null){
 			String className = superClass.getName();
 			System.out.println("Super Class: " + className);
@@ -33,9 +35,6 @@ public class Inspector {
 	
 	public void getInterfaces(Class superClass){
 		Class[] arrayClass = superClass.getInterfaces();
-		for (int counter = 0; counter < arrayClass.length; counter++){
-			System.out.println("Interface: "+ arrayClass[counter]);
-		}
-			
+		System.out.println("Interfaces: " + Arrays.asList(arrayClass));	
 	}
 }
