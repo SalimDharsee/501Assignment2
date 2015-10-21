@@ -18,6 +18,7 @@ public class Inspector {
 		while (superClass != null){
 			String className = superClass.getName();
 			System.out.println("Super Class: " + className);
+			getInterfaces(superClass);
 			aClass = superClass;
 			superClass = aClass.getSuperclass();
 		}
@@ -28,5 +29,13 @@ public class Inspector {
 		Class aClass = obj.getClass();
 		System.out.println("Class Name: "+ aClass);
 		
+	}
+	
+	public void getInterfaces(Class superClass){
+		Class[] arrayClass = superClass.getInterfaces();
+		for (int counter = 0; counter < arrayClass.length; counter++){
+			System.out.println("Interface: "+ arrayClass[counter]);
+		}
+			
 	}
 }
