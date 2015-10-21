@@ -17,12 +17,14 @@ public class Inspector {
 		Class aClass = obj.getClass();
 		Class superClass = aClass.getSuperclass();
 		
+		getClassConstructors(aClass);
 		getInterfaces(aClass);
 		getMethods(aClass);
 		while (superClass != null){
 			String className = superClass.getName();
 			System.out.println("	Super Class: " + className);
 			
+			getClassConstructors(superClass);
 			getInterfaces(superClass);
 			getMethods(superClass);
 			
@@ -54,7 +56,21 @@ public class Inspector {
 		}
 	}
 	
-	public void getConstructors(){
+	public void getClassConstructors(Class aClass){
+		try {
+			Constructor[] aConstructor = aClass.getConstructors();
+			for(int counter = 0; counter < aConstructor.length; counter++){
+				System.out.println(" 	Class Constructor: "+ aConstructor[counter]);
+				System.out.println("		Constuctor Modifers:" +aConstructor[counter].getModifiers());
+				Class[] arrayParameter = aConstructor[counter].getParameterTypes();
+				System.out.println("  		Constructor Parameters: " + Arrays.asList(arrayParameter));
+			}
+			
+	
+		} catch (SecurityException e) {
+			
+			e.printStackTrace();
+		}
 		
 	}
 }
