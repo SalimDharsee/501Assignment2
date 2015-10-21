@@ -16,25 +16,33 @@ public class Inspector {
 	private void getSuperClass(Object obj) {
 		Class aClass = obj.getClass();
 		Class superClass = aClass.getSuperclass();
+		
 		getInterfaces(aClass);
+		getMethods(aClass);
 		while (superClass != null){
 			String className = superClass.getName();
 			System.out.println("Super Class: " + className);
+			
 			getInterfaces(superClass);
+			getMethods(superClass);
+			
 			aClass = superClass;
 			superClass = aClass.getSuperclass();
 		}
 	}
 
 	public void getDeclaringClass(Object obj){
-		
 		Class aClass = obj.getClass();
 		System.out.println("Class Name: "+ aClass);
-		
 	}
 	
-	public void getInterfaces(Class superClass){
-		Class[] arrayClass = superClass.getInterfaces();
+	public void getInterfaces(Class aClass){
+		Class[] arrayClass = aClass.getInterfaces();
 		System.out.println("Interfaces: " + Arrays.asList(arrayClass));	
+	}
+	
+	public void getMethods(Class aClass){
+		Method[] arrayMethod = aClass.getDeclaredMethods();
+		System.out.println("Methods: " + Arrays.asList(arrayMethod));	
 	}
 }
