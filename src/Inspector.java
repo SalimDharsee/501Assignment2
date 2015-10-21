@@ -43,6 +43,14 @@ public class Inspector {
 	
 	public void getMethods(Class aClass){
 		Method[] arrayMethod = aClass.getDeclaredMethods();
-		System.out.println("Methods: " + Arrays.asList(arrayMethod));	
+		for(int counter = 0; counter < arrayMethod.length; counter++){
+			System.out.println("Method: " + arrayMethod[counter]);
+			System.out.println("	Return Type: " + arrayMethod[counter].getReturnType());
+			System.out.println("	Modifers: " + arrayMethod[counter].getModifiers());
+			Class[] arrayException = arrayMethod[counter].getExceptionTypes();
+			System.out.println("	Exceptions: " + Arrays.asList(arrayException));
+			Class[] arrayParameter = arrayMethod[counter].getParameterTypes();
+			System.out.println("	Parmeters: " + Arrays.asList(arrayParameter));
+		}
 	}
 }
