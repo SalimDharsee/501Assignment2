@@ -18,6 +18,7 @@ public class Inspector {
 		Class superClass = aClass.getSuperclass();
 		
 		getClassConstructors(aClass);
+		getClassFields(aClass, obj);
 		getInterfaces(aClass);
 		getMethods(aClass);
 		while (superClass != null){
@@ -25,6 +26,7 @@ public class Inspector {
 			System.out.println("	Super Class: " + className);
 			
 			getClassConstructors(superClass);
+			getClassFields(superClass, obj);
 			getInterfaces(superClass);
 			getMethods(superClass);
 			
@@ -61,7 +63,7 @@ public class Inspector {
 			Constructor[] aConstructor = aClass.getConstructors();
 			for(int counter = 0; counter < aConstructor.length; counter++){
 				System.out.println(" 	Class Constructor: "+ aConstructor[counter]);
-				System.out.println("		Constuctor Modifers:" +aConstructor[counter].getModifiers());
+				System.out.println("		Constuctor Modifiers:" +aConstructor[counter].getModifiers());
 				Class[] arrayParameter = aConstructor[counter].getParameterTypes();
 				System.out.println("  		Constructor Parameters: " + Arrays.asList(arrayParameter));
 			}
@@ -70,6 +72,28 @@ public class Inspector {
 		} catch (SecurityException e) {
 			
 			e.printStackTrace();
+		}
+		
+	}
+	
+	public void getClassFields(Class aClass, Object obj){
+		Field[] aField = aClass.getDeclaredFields();
+		for(int counter = 0; counter <aField.length; counter++){
+			aField[counter].setAccessible(true);
+			System.out.println("	Declared Field: " + aField[counter]);
+			System.out.println(" 		Field Modifiers: " + aField[counter].getModifiers());
+			Class<?> fieldParameter = aField[counter].getType();
+			System.out.println("		Field Parameters: " + Arrays.asList(fieldParameter));
+			try {
+				Object value = aField[counter].get(obj);
+				System.out.println("		Field Value: " + value);
+			} catch (IllegalArgumentException e) {
+				
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				
+				e.printStackTrace();
+			}
 		}
 		
 	}
