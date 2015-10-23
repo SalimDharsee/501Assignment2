@@ -50,11 +50,14 @@ public class Inspector {
 	}
 
 	// method will output the name of the class based on the object given
-	public void getDeclaringClass(Object obj){
+	public String getDeclaringClass(Object obj){
+		
 		Class aClass = obj.getClass();
+		String classString = ""+ aClass;
 		System.out.println("	Class Name: "+ aClass);
+		return classString;
 	}
-	
+	//
 	// method will output the interfaces of the class based on the object given
 	public void getInterfaces(Class aClass){
 		Class[] arrayClass = aClass.getInterfaces();
