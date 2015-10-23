@@ -79,14 +79,17 @@ public class Inspector {
 	}
 	
 	// method will output the classes constructor methods based on the object given 
-	public void getClassConstructors(Class aClass){
+	public String getClassConstructors(Class aClass){
+		String constructorInfo = null;
 		try {
+			
 			Constructor[] aConstructor = aClass.getConstructors();
 			for(int counter = 0; counter < aConstructor.length; counter++){
 				System.out.println(" 	Class Constructor: "+ aConstructor[counter]);
 				System.out.println("		Constuctor Modifiers:" +aConstructor[counter].getModifiers());
 				Class[] arrayParameter = aConstructor[counter].getParameterTypes();
 				System.out.println("  		Constructor Parameters: " + Arrays.asList(arrayParameter));
+				constructorInfo = "" + aConstructor[counter] + aConstructor[counter].getModifiers();
 			}
 			
 	
@@ -94,11 +97,11 @@ public class Inspector {
 			
 			e.printStackTrace();
 		}
-		
+		return constructorInfo;
 	}
 	
 	// method will output the classes fields based on the object given
-	public void getClassFields(Class aClass, Object obj){
+	public Field[] getClassFields(Class aClass, Object obj){
 		Field[] aField = aClass.getDeclaredFields();
 		for(int counter = 0; counter <aField.length; counter++){
 			aField[counter].setAccessible(true);
@@ -117,6 +120,6 @@ public class Inspector {
 				e.printStackTrace();
 			}
 		}
-		
+		return aField;
 	}
 }
