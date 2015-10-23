@@ -1,21 +1,35 @@
-
+/*
+ * Salim Dharsee
+ * ID# 10062458
+ * CPSC 501 T01
+ */
 
 import java.lang.reflect.*;
 import java.util.Arrays;
 public class Inspector {
 	
 	
+	// Function that is called by the test file, will call the corresponding methods
 	
 	public void inspect(Object obj, boolean recursive){
+		
+		//create an instance of the class object and the superclass object 
+		
 		Class aClass = obj.getClass();
 		Class superClass = aClass.getSuperclass();
 		
+		//calls the corresponding method for outputting the class name 
 		getDeclaringClass(obj);
-		methodCalls(obj, aClass);
-		
+		// calls the corresponding method that will handle each classes method output
+		getClassConstructors(aClass);
+		getClassFields(aClass, obj);
+		getInterfaces(aClass);
+		getMethods(aClass);
+		// calls the method traverses through the super classes 
 		superClass = superClassLoop(obj, superClass);
 		
 	}
+	// goes through the object and pulls out its superclasses 
 	
 	private Class superClassLoop(Object obj, Class superClass) {
 		Class aClass;
@@ -23,19 +37,15 @@ public class Inspector {
 			String className = superClass.getName();
 			System.out.println("	Super Class: " + className);
 			
-			methodCalls(obj, superClass);
+			getClassConstructors(superClass);
+			getClassFields(superClass, obj);
+			getInterfaces(superClass);
+			getMethods(superClass);
 			
 			aClass = superClass;
 			superClass = aClass.getSuperclass();
 		}
 		return superClass;
-	}
-
-	private void methodCalls(Object obj, Class aClass) {
-		getClassConstructors(aClass);
-		getClassFields(aClass, obj);
-		getInterfaces(aClass);
-		getMethods(aClass);
 	}
 
 	public void getDeclaringClass(Object obj){
