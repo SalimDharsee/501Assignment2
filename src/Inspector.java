@@ -11,20 +11,12 @@ public class Inspector {
 		Class superClass = aClass.getSuperclass();
 		
 		getDeclaringClass(obj);
-		getSuperClass(obj);
-		
 		methodCalls(obj, aClass);
 		
 		superClass = superClassLoop(obj, superClass);
 		
 	}
 	
-	private void getSuperClass(Object obj) {
-		
-	
-		
-	}
-
 	private Class superClassLoop(Object obj, Class superClass) {
 		Class aClass;
 		while (superClass != null){
