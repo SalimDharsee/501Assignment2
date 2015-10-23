@@ -14,25 +14,28 @@ public class Inspector {
 	}
 	
 	private void getSuperClass(Object obj) {
+		
 		Class aClass = obj.getClass();
 		Class superClass = aClass.getSuperclass();
 		
-		getClassConstructors(aClass);
-		getClassFields(aClass, obj);
-		getInterfaces(aClass);
-		getMethods(aClass);
+		methodCalls(obj, aClass);
+		
 		while (superClass != null){
 			String className = superClass.getName();
 			System.out.println("	Super Class: " + className);
 			
-			getClassConstructors(superClass);
-			getClassFields(superClass, obj);
-			getInterfaces(superClass);
-			getMethods(superClass);
+			methodCalls(obj, superClass);
 			
 			aClass = superClass;
 			superClass = aClass.getSuperclass();
 		}
+	}
+
+	private void methodCalls(Object obj, Class aClass) {
+		getClassConstructors(aClass);
+		getClassFields(aClass, obj);
+		getInterfaces(aClass);
+		getMethods(aClass);
 	}
 
 	public void getDeclaringClass(Object obj){
