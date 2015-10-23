@@ -7,20 +7,22 @@ public class Inspector {
 	
 	
 	public void inspect(Object obj, boolean recursive){
+		Class aClass = obj.getClass();
+		Class superClass = aClass.getSuperclass();
 		
 		getDeclaringClass(obj);
 		getSuperClass(obj);
+		
+		methodCalls(obj, aClass);
+		
+		superClass = superClassLoop(obj, superClass);
 		
 	}
 	
 	private void getSuperClass(Object obj) {
 		
-		Class aClass = obj.getClass();
-		Class superClass = aClass.getSuperclass();
+	
 		
-		methodCalls(obj, aClass);
-		
-		superClass = superClassLoop(obj, superClass);
 	}
 
 	private Class superClassLoop(Object obj, Class superClass) {
