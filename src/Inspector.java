@@ -20,6 +20,11 @@ public class Inspector {
 		
 		methodCalls(obj, aClass);
 		
+		superClass = superClassLoop(obj, superClass);
+	}
+
+	private Class superClassLoop(Object obj, Class superClass) {
+		Class aClass;
 		while (superClass != null){
 			String className = superClass.getName();
 			System.out.println("	Super Class: " + className);
@@ -29,6 +34,7 @@ public class Inspector {
 			aClass = superClass;
 			superClass = aClass.getSuperclass();
 		}
+		return superClass;
 	}
 
 	private void methodCalls(Object obj, Class aClass) {
