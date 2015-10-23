@@ -2,6 +2,7 @@
  * Salim Dharsee
  * ID# 10062458
  * CPSC 501 T01
+ * Assignment 2 
  */
 
 import java.lang.reflect.*;
@@ -20,7 +21,7 @@ public class Inspector {
 		
 		//calls the corresponding method for outputting the class name 
 		getDeclaringClass(obj);
-		// calls the corresponding method that will handle each classes method output
+		// methods which gather the information about the class that is handed to them
 		getClassConstructors(aClass);
 		getClassFields(aClass, obj);
 		getInterfaces(aClass);
@@ -29,8 +30,8 @@ public class Inspector {
 		superClass = superClassLoop(obj, superClass);
 		
 	}
-	// goes through the object and pulls out its superclasses 
 	
+	// goes through the object and pulls out its superclasses 
 	private Class superClassLoop(Object obj, Class superClass) {
 		Class aClass;
 		while (superClass != null){
@@ -48,16 +49,19 @@ public class Inspector {
 		return superClass;
 	}
 
+	// method will output the name of the class based on the object given
 	public void getDeclaringClass(Object obj){
 		Class aClass = obj.getClass();
 		System.out.println("	Class Name: "+ aClass);
 	}
 	
+	// method will output the interfaces of the class based on the object given
 	public void getInterfaces(Class aClass){
 		Class[] arrayClass = aClass.getInterfaces();
 		System.out.println("	Class Interfaces: " + Arrays.asList(arrayClass));	
 	}
 	
+	// method will output the classes methods based on the object given
 	public void getMethods(Class aClass){
 		Method[] arrayMethod = aClass.getDeclaredMethods();
 		for(int counter = 0; counter < arrayMethod.length; counter++){
@@ -71,6 +75,7 @@ public class Inspector {
 		}
 	}
 	
+	// method will output the classes constructor methods based on the object given 
 	public void getClassConstructors(Class aClass){
 		try {
 			Constructor[] aConstructor = aClass.getConstructors();
@@ -89,6 +94,7 @@ public class Inspector {
 		
 	}
 	
+	// method will output the classes fields based on the object given
 	public void getClassFields(Class aClass, Object obj){
 		Field[] aField = aClass.getDeclaredFields();
 		for(int counter = 0; counter <aField.length; counter++){
